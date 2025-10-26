@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Chat</title>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white flex flex-col min-h-screen">
+
+<!-- Overlay for username input -->
+<div id="username-overlay" class="fixed inset-0 bg-gray-900 bg-opacity-95 flex items-center justify-center z-50">
+    <div class="bg-gray-800 p-8 rounded-2xl shadow-lg w-80 text-center">
+        <h2 class="text-2xl font-bold mb-4 text-indigo-400">Enter your username</h2>
+        <input id="username-input" type="text" placeholder="e.g. Ghonem"
+               class="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 border-none focus:ring-2 focus:ring-indigo-500 focus:outline-none mb-4"/>
+        <button id="start-chat"
+                class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition transform hover:scale-105">
+            Join Chat
+        </button>
+    </div>
+</div>
+
+<!-- Chat section -->
+<div class="flex-grow flex flex-col" id="chat-section" style="display: none;">
+
+    <!-- Header -->
+    <header class="flex items-center justify-between bg-gray-800 px-6 py-3 border-b border-gray-700">
+        <h1 class="text-xl font-semibold text-indigo-400">💬 Real-Time Chat</h1>
+        <button id="change-username"
+                class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-lg text-sm font-medium transition">
+            Change Username
+        </button>
+    </header>
+
+    <!-- Messages -->
+    <div class="flex-grow overflow-y-auto p-6 space-y-2" id="chat-container"></div>
+
+    <!-- Input -->
+    <form id="message-form" class="p-4 border-t border-gray-700 bg-gray-800">
+        <div class="flex space-x-3">
+            <input type="text" id="message-input" placeholder="Type a message..." required
+                   class="flex-grow p-3 bg-gray-700 border-none rounded-full text-white focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 transition-colors"/>
+            <button type="button" id="send-btn"
+                    class="w-14 h-14 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full flex items-center justify-center shadow-lg transition-all transform hover:scale-105">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+            </button>
+        </div>
+    </form>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
